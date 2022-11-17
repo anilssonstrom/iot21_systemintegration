@@ -66,3 +66,25 @@ def request_with_params_and_headers():
     print(first_hit['text_matches'])
 
 
+def request_with_other_methods():
+    response = requests.head('https://httpbin.org/get')
+    print(response.headers['Content-Type'])
+    print(response.text)
+
+    response = requests.delete('https://httpbin.org/delete')
+    print(response.status_code)
+    print(response.text)
+
+    response = requests.post('https://httpbin.org/post', json={'key': 'value'})
+    # application/x-www-form-urlencoded
+    print(response.status_code)
+
+    # Inspektera hur vår fråga såg ut
+    print(response.request.url)
+
+
+def requests_with_auth():
+    # Rätt login ger 200 OK, fel ger 401
+    request = requests.get('https://httpbin.org/basic-auth/kyhtest/abcde', auth=('kyhtest', 'hemligt'))
+    print('Response code', request.status_code)
+    print('Response content:\n', request.text)
