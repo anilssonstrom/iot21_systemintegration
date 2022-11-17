@@ -1,33 +1,63 @@
 
 import requests
-
-response = requests.get('https://api.github.com/helloworld')
-
-print(response.status_code)
-
-if response.status_code == 200:
-    print("Success!")
-if response.status_code == 404:
-    print("Not found!")
-
-if response.status_code:
-    print("Success!")
-else:
-    print("Error!")
+from requests.exceptions import HTTPError
 
 
-class MyClass:
-    def __init__(self, value: int = 0):
-        self.value = value
+def get_response_example():
+    response = requests.get('https://api.github.com/helloworld')
 
-    def __bool__(self):
-        return self.value != 0
+    print(response.status_code)
+
+    if response.status_code == 200:
+        print("Success!")
+    if response.status_code == 404:
+        print("Not found!")
+
+    if response.status_code:
+        print("Success!")
+    else:
+        print("Error!")
 
 
-m = MyClass(5)
-print(m.value)
+def bool_values():
+    class MyClass:
+        def __init__(self, value: int = 0):
+            self.value = value
 
-if m:
-    print("Value is set")
-else:
-    print("Value is not set")
+        def __bool__(self):
+            return self.value != 0
+
+
+    m = MyClass(5)
+    print(m.value)
+
+    if m:
+        print("Value is set")
+    else:
+        print("Value is not set")
+
+
+def request_exceptions():
+    try:
+        response = requests.get('https://api.github.com/')
+
+        # Om response var "successful", gör inget. Annars raise exception
+        response.raise_for_status()
+    except HTTPError as http_err:
+        print(f'HTTP error occurred: {http_err}')
+    except Exception as err:
+        print(f'Other error occurred: {err}')
+    else:
+        print(f'Success! {response.status_code}')
+        data = response.json()  # Avkoda dokumentet som JSON. Sparas som en Python-dict
+        print(response.headers['content-type'])  # Inspektera data i headern
+        print(response.encoding)  # Encoding som kommer från content-type
+
+
+response = requests.get('https://api.github.com/search/repositories',
+                        params={'q': 'requests+language:python'})
+
+data = response.json()
+first_hit = data['items'][0]
+print(first_hit['name'])
+print(first_hit['description'])
