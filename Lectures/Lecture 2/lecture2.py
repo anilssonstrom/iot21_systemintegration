@@ -54,10 +54,15 @@ def request_exceptions():
         print(response.encoding)  # Encoding som kommer från content-type
 
 
-response = requests.get('https://api.github.com/search/repositories',
-                        params={'q': 'requests+language:python'})
+def request_with_params_and_headers():
+    response = requests.get('https://api.github.com/search/repositories',
+                            params={'q': 'requests+language:python'},
+                            headers={'Accept': 'application/vnd.github.v3.text-match+json'})
 
-data = response.json()
-first_hit = data['items'][0]
-print(first_hit['name'])
-print(first_hit['description'])
+    data = response.json()
+    first_hit = data['items'][0]
+    print(first_hit['name'])
+    print(first_hit['description'])
+    print(first_hit['text_matches'])
+
+
