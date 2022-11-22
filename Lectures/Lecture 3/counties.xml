@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ArrayOfCounty xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://viss.lansstyrelsen.se/api/schemas/counties.xsd">
+  <County>
+    <CountyCode>08</CountyCode>
+    <CountyIdentifier>2</CountyIdentifier>
+    <Name>Kalmar</Name>
+    <Country>SE</Country>
+  </County>
+  <County>
+    <CountyCode>25</CountyCode>
+    <CountyIdentifier>14</CountyIdentifier>
+    <Name>Norrbotten</Name>
+    <Country>SE</Country>
+  </County>
+</ArrayOfCounty>
