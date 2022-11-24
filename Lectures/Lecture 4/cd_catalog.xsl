@@ -3,8 +3,11 @@
 
 <xsl:template match="/">
 <html>
+<head>
+	<link rel="stylesheet" href="style2.css" />
+</head>
 <body>
-<table border="1">
+<table>
 	<tr>
 		<th>Title</th>
 		<th>Artist</th>
