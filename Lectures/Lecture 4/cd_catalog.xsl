@@ -4,9 +4,10 @@
 <xsl:template match="/">
 <html>
 <head>
-	<link rel="stylesheet" href="style2.css" />
+	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<div class="container">
 <table>
 	<tr>
 		<th>Title</th>
@@ -27,6 +28,7 @@
 	</tr>
 	</xsl:for-each>
 </table>
+</div>
 </body>
 </html>
 </xsl:template>
